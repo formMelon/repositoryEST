@@ -1,19 +1,19 @@
 port = "COM3";
 baudRate = 9600;
-serialPort = serialport(port, buadRate);
-fopen(serialPort);
+s = serial(port, 'baudrate', baudRate);
+fopen(s);
 
 fileName = "pressureData.txt";
 fileID = fopen(fileName, "w");
 
 try
     while true
-        dataLine = fscanf(serialPort, "%serialPort");
-        fprintf(fileID, "%serialPort/n", dataLine);
+        dataLine = fscanf(s, "%s");
+        fprintf(fileID, "%s", dataLine);
     end
 catch
     fclose(fileID);
-    fclose(serialPort);
+    fclose(s);
     disp("Finished collecting pressure data...");
 end
 
@@ -24,4 +24,4 @@ plot(time, data);
 xlabel("t. Time []")
 ylabel("p. Pressure []")
 title("Pressure as a function of time")
-saveas(gcf, "pressurePlot.eps")
+saveas(gcf, "pressurePlot.png")
