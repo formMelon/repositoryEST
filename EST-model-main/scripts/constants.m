@@ -27,3 +27,11 @@ unit("Wh")  = unit("W") *unit("h");
 unit("kWh") = unit("kW")*unit("h");
 unit("MWh") = unit("MW")*unit("h");
 unit("GWh") = unit("GW")*unit("h");
+
+% Resistance
+
+unit("ohm") = 1.;
+
+% Temperature
+
+unit("K") = 1.;
