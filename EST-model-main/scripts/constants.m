@@ -35,3 +35,8 @@ unit("ohm") = 1.;
 % Temperature
 
 unit("K") = 1.;
+
+% Weight
+
+unit("kg") = 1.;
+unit("m") = 1.
