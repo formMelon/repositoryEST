@@ -15,7 +15,15 @@ xlabel('Time [day]');
 ylabel('Power [W]');
 
 %% Demand
-figure
+figure;
+plot(tout/unit("day"), PDemand/unit("W"));
+xlim([0 tout(end)/unit("day")]);
+grid on;
+title('Demand');
+xlabel('Time [day]');
+ylabel('Power [W]');
+
+figure;
 plot(tout/unit("day"), PDemand/unit("W"));
 xlim([0 tout(end)/unit("day")]);
 grid on;
@@ -103,6 +111,7 @@ EDSupplyTransport  = trapz(tout, DSupplyTransporta);
 EDDemandTransport  = trapz(tout, DDemandTransporta);
 EDInjection        = trapz(tout, DInjectiona);
 EDStorage          = trapz(tout, DStorageinda);
+EDTStorage         = trapz(tout, TStorageLossa);
 EDExtraction       = trapz(tout, DExtractiona);
 DTotal             = trapz(tout, D);
 
@@ -112,3 +121,9 @@ pie([EDSupplyTransport, EDDemandTransport, EDInjection, EDStorage, ...
 lgd = legend(["From supply", "To demand", "Injection", "Storage", ...
     "Extraction"]);
 title(sprintf("Dissipated energy %3.2e [J]", DTotal/unit('J')));
+
+%% Last pie chart
+
+figure;
+pie([EDStorage, EDTStorage]/DTotal);
+lgd = legend(["Energy Storage", "Thermal Storage"]);

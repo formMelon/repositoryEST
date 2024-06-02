@@ -38,12 +38,12 @@ aInjection = 0.05; % Dissipation coefficient during injection
 
 % Storage system
 
-EStorageMax     = 135000.*unit("kWh"); % Maximum energy for energy storage
+EStorageMax     = 135000*unit("kWh"); % Maximum energy for energy storage
 EStorageMin     = 0.0*unit("kWh"); % Minimum energy
-EStorageInitial = 0.0*unit("kWh"); % Initial energy
-TStorageMax     = 45000.*unit("kWh"); % Maximum energy
+EStorageInitial = 45000*unit("kWh"); % Initial energy
+TStorageMax     = 45000*unit("kWh"); % Maximum energy
 TStorageMin     = 0.0*unit("kWh"); % Minimum energy
-TStorageInitial = 0.0*unit("kWh"); % Initial energy for thermal storage
+TStorageInitial = 45000*unit("kWh"); % Initial energy for thermal storage
 bStorage        = 1e-6/unit("s");  % Energy storage dissipation coefficient
 sb = 5.670374419*10^-8*(...
     unit("W")/unit("m")/unit("m")/unit("K")/unit("K")/unit("K")/unit("K")); 
