@@ -21,7 +21,7 @@ data = readmatrix(fileName);
 
 time = 1:length(data);
 plot(time, data);
-xlabel("t. Time []")
-ylabel("y. Airflow []")
+xlabel("t. Time [s]")
+ylabel("y. Airflow [L/min]")
 title("Airflow as a function of time time")
 saveas(gcf, "airFlowPlot.eps")
