@@ -2,19 +2,39 @@
 % after the Simulink model is finished running (stopFcn callback function).
 
 close all;
+
+disp('StopFcn executed');
+
+%% Supply
 figure;
+plot(tout/unit("day"), PSupply/unit("W"));
+xlim([0 tout(end)/unit("day")]);
+grid on;
+title('Supply');
+xlabel('Time [day]');
+ylabel('Power [W]');
+
+%% Demand
+figure
+plot(tout/unit("day"), PDemand/unit("W"));
+xlim([0 tout(end)/unit("day")]);
+grid on;
+title('Demand');
+xlabel('Time [day]');
+ylabel('Power [W]');
 
 %% Supply and demand
 subplot(2,2,1);
 plot(tout/unit("day"), PSupply/unit("W"));
 hold on;
 plot(tout/unit("day"), PDemand/unit("W"));
+hold off;
 xlim([0 tout(end)/unit("day")]);
 grid on;
 title('Supply and demand');
 xlabel('Time [day]');
 ylabel('Power [W]');
-legend("Supply","Demand");
+legend("Supply", "Demand");
 
 %% Stored energy
 subplot(2,2,2);
@@ -44,7 +64,7 @@ grid on;
 title('Load balancing');
 xlabel('Time [day]');
 ylabel('Power [W]');
-legend("Sell","Buy");
+legend("Sell", "Buy");
 
 %% Pie charts
 
@@ -57,19 +77,38 @@ EtoInjection         = trapz(tout, PtoInjection);
 EfromExtraction      = trapz(tout, PfromExtraction);
 EStorageDissipation  = trapz(tout, DStorage);
 EDirect              = EfromSupplyTransport - ESell - EtoInjection;
-ESurplus             = EtoInjection-EfromExtraction-EStorageDissipation;
+ESurplus             = EtoInjection - EfromExtraction -EStorageDissipation;
 
 figure;
 tiles = tiledlayout(1,2);
 
 ax = nexttile;
 pie(ax, [EDirect, EtoInjection, ESell]/EfromSupplyTransport);
-lgd = legend({"Direct to demand", "To storage", "Sold"});
+lgd = legend(["Direct to demand", "To storage", "Sold"]);
 lgd.Layout.Tile = "south";
-title(sprintf("Received energy %3.2e [J]", EfromSupplyTransport/unit('J')));
+title(... 
+    sprintf("Received energy %3.2e [J]", EfromSupplyTransport/unit('J')));
 
 ax = nexttile;
 pie(ax, [EDirect, EfromExtraction, EBuy]/EtoDemandTransport);
-lgd = legend({"Direct from supply", "From storage", "Bought"});
+lgd = legend(["Direct from supply", "From storage", "Bought"]);
 lgd.Layout.Tile = "south";
 title(sprintf("Delivered energy %3.2e [J]", EtoDemandTransport/unit('J')));
+
+%% Other pie chart
+
+% Integrate the dissipation power signals
+
+EDSupplyTransport  = trapz(tout, DSupplyTransporta);
+EDDemandTransport  = trapz(tout, DDemandTransporta);
+EDInjection        = trapz(tout, DInjectiona);
+EDStorage          = trapz(tout, DStorageinda);
+EDExtraction       = trapz(tout, DExtractiona);
+DTotal             = trapz(tout, D);
+
+figure;
+pie([EDSupplyTransport, EDDemandTransport, EDInjection, EDStorage, ...
+    EDExtraction]/DTotal);
+lgd = legend(["From supply", "To demand", "Injection", "Storage", ...
+    "Extraction"]);
+title(sprintf("Dissipated energy %3.2e [J]", DTotal/unit('J')));
