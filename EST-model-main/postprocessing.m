@@ -114,16 +114,18 @@ EDStorage          = trapz(tout, DStorageinda);
 EDTStorage         = trapz(tout, TStorageLossa);
 EDExtraction       = trapz(tout, DExtractiona);
 DTotal             = trapz(tout, D);
+EDJustStorage      = trapz(tout, DJustStoragea);
 
 figure;
-pie([EDSupplyTransport, EDDemandTransport, EDInjection, EDStorage, ...
+pie([EDSupplyTransport, EDDemandTransport, EDInjection, EDJustStorage, ...
     EDExtraction]/DTotal);
 lgd = legend(["From supply", "To demand", "Injection", "Storage", ...
     "Extraction"]);
-title(sprintf("Dissipated energy %3.2e [J]", DTotal/unit('J')));
+title(sprintf("Dissipated Energy %3.2e [J]", DTotal/unit('J')));
 
 %% Last pie chart
 
 figure;
-pie([EDStorage, EDTStorage]/DTotal);
+pie([EDStorage, EDTStorage]/EDJustStorage);
 lgd = legend(["Energy Storage", "Thermal Storage"]);
+title("Dissipated Energy from Storages");
