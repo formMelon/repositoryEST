@@ -1,19 +1,19 @@
 port = "COM3";
 baudRate = 9600;
-serialPort = serialport(port, baudRate);
-fopen(serialPort);
+s = serial(port, 'BaudRate', baudRate);
+fopen(s);
 
 fileName = "airFlowData.txt";
 fileID = fopen(fileName, "w");
 
 try
     while true
-        dataLine = fscanf(serialPort, "%serialPort");
-        fprintf(fileID, "%serialPort\n", dataLine);
+        dataLine = fscanf(s, "%s");
+        fprintf(fileID, "%s", dataLine);
     end
 catch
     fclose(fileID);
-    fclose(serialPort);
+    fclose(s);
     disp("Finished collecting airflow data...");
 end
 

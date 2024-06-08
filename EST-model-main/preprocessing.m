@@ -38,10 +38,10 @@ aInjection = 0.05; % Dissipation coefficient during injection
 
 % Storage system
 
-EStorageMax     = 135000*unit("kWh"); % Maximum energy for energy storage
+EStorageMax     = 350000*unit("kWh"); % Maximum energy for energy storage
 EStorageMin     = 0.0*unit("kWh"); % Minimum energy
-EStorageInitial = 10000*unit("kWh"); % Initial energy
-bStorage        = 1e-6/unit("s");  % Energy storage dissipation coefficient
+EStorageInitial = 0.0*unit("kWh"); % Initial energy
+bStorage        = 5*1e-8/unit("s");  % Energy storage dissipation coefficient
 sb = 5.670374419*10^-8*(...
     unit("W")/unit("m")/unit("m")/unit("K")/unit("K")/unit("K")/unit("K")); 
 % Constant of Stefan

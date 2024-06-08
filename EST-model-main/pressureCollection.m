@@ -21,7 +21,6 @@ data = readmatrix(fileName);
 
 time = 1:length(data);
 plot(time, data);
-xlabel("t. Time []")
-ylabel("p. Pressure []")
+xlabel("t. Time [s]")
+ylabel("p. Pressure [kPa]")
 title("Pressure as a function of time")
-saveas(gcf, "pressurePlot.png")
