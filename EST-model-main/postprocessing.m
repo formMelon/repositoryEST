@@ -1,11 +1,11 @@
 % Post-processing script for the EST Simulink model. This script is invoked
-% after the Simulink model is finished running (stopFcn callback function).
+% after the Simulink model is finished running. (stopFcn callback function)
 
 close all;
-
 disp('StopFcn executed');
 
 %% Supply
+
 figure;
 plot(tout/unit("day"), PSupply/unit("W"));
 xlim([0 tout(end)/unit("day")]);
@@ -15,6 +15,7 @@ xlabel('Time [day]');
 ylabel('Power [W]');
 
 %% Demand
+
 figure;
 plot(tout/unit("day"), PDemand/unit("W"));
 xlim([0 tout(end)/unit("day")]);
@@ -32,6 +33,7 @@ xlabel('Time [day]');
 ylabel('Power [W]');
 
 %% Supply and demand
+
 subplot(2,2,1);
 plot(tout/unit("day"), PSupply/unit("W"));
 hold on;
