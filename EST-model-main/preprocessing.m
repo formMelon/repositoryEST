@@ -50,7 +50,7 @@ mass = 25837320*unit("kg"); % Mass of the thermal storage assuming the
 % use of water.
 k = 0.04*unit("W")/unit("m")/unit("K"); % The thermal conductivity for the 
 % insulation, syrafoam in this case.
-areaOfTank = 6096*unit("m")*unit("m"); % Area of the thermal storage tank.
+areaOfTank = 5000*unit("m")*unit("m"); % Area of the thermal storage tank.
 environmentalTemperature = 293*unit("K"); % Assumed to be constant but 
 % could fluctuate between 5 and 23 degrees celcius in reality.
 x = 1*unit("m"); % Thickness of insulation.
