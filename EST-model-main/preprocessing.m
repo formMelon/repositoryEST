@@ -38,10 +38,10 @@ efficiencyInverter = 0.97; % Efficiency for solar inverter, ranges from
 aNetInjection = 0.05; % Dissipation coefficient during injection.
 
 % Storage system.
-EStorageMax     = 450000*unit("kWh"); % Maximum energy for energy storage.
+EStorageMax     = 350000*unit("kWh"); % Maximum energy for energy storage.
 EStorageMin     = 0.0*unit("kWh"); % Minimum energy.
 EStorageInitial = 0.0*unit("kWh"); % Initial energy.
-bStorage        = 1e-8/unit("s");  % Energy storage dissipation 
+bStorage        = 1e-9/unit("s");  % Energy storage dissipation 
 % coefficient.
 sb = 5.670374419*10^-8*(...
     unit("W")/unit("m")/unit("m")/unit("K")/unit("K")/unit("K")/unit("K")); 
@@ -50,7 +50,7 @@ mass = 25837320*unit("kg"); % Mass of the thermal storage assuming the
 % use of water.
 k = 0.04*unit("W")/unit("m")/unit("K"); % The thermal conductivity for the 
 % insulation, syrafoam in this case.
-areaOfTank = 5000*unit("m")*unit("m"); % Area of the thermal storage tank.
+areaOfTank = 6100*unit("m")*unit("m"); % Area of the thermal storage tank.
 environmentalTemperature = 293*unit("K"); % Assumed to be constant but 
 % could fluctuate between 5 and 23 degrees celcius in reality.
 x = 1*unit("m"); % Thickness of insulation.
